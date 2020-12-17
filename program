@@ -1,0 +1,61 @@
+clc;
+prompt='Enter the value for w0:' ;
+w0=input(prompt) ; %enter the value of w0 of cos(won) prompt='Enter the value for w1:' ;
+w1=input(prompt) ; %enter the value of w1 of cos(w1n) prompt='Enter the value for w2:' ;
+w2=input(prompt) ; %enter the value of w2 of cos(w2n)
+%..............
+%calculation of numerator and denominator of w0 c=mod(w0,pi);
+[n1,d]=numden(sym(w0)); e=mod(double(n1),pi); [n2,d2]=rat(w0);
+if c==0
+n=w0/pi; elseif e==0 n=n2/pi;
+else
+n=w0; end
+% 	
+%find whether signal is period or not
+%finding period of signal if signal is periodic for t=1:n
+N0=(2*pi*t)/w0; a=mod(N0,1);
+if a==0
+n0=N0 ;%value of N0
+
+break end
+end
+%..............
+%calculation of numerator and denominator of w1 c1=mod(w1,pi);
+[n11,d1]=numden(sym(w1)); e1=mod(double(n11),pi); [n21,d21]=rat(w1);
+if c1==0 t11=w1/pi ;
+elseif e1==0
+ 
+t11=n21/pi; else
+t11=w1;
+end
+% 	
+%find whether signal is period or not
+%finding period of signal if signal is periodic for t1=1:t11
+N1=(2*pi*t1)/w1; a1=mod(N1,1);
+if a1==0 n1=N1;%value of N1
+
+break end
+end
+%..............
+%calculation of numerator and denominator of w2 c2=mod(w2,pi);
+[n12,d12]=numden(sym(w2)); e2=mod(double(n12),pi); [n22,d22]=rat(w2);
+if c2==0 t22=w2/pi;
+elseif e2==0 t22=n22/pi;
+else
+t22=w2;
+end
+% 	
+%find whether signal is period or not
+%finding period of signal if signal is periodic for t2=1:t22
+N2=(2*pi*t2)/w2; a2=mod(N2,1);
+if a2==0 n2=N2;%value of N2
+
+break end
+end
+% 	
+%finding the period of cos(won)+cos(w1n)+cos(w2n) if a2~=0 | a~=0 | a1~=0
+ 
+disp('the signal is aperiodic') else
+fp=lcm(lcm(n0,n1),n2);
+disp('the signal is periodic with Fundamental Period =') ; disp(fp)
+end
