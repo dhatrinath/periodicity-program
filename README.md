@@ -1,1 +1,1 @@
-To check periodicity
+To check periodicity of signal function
